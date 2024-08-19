@@ -5,6 +5,7 @@ import { useState } from 'react';
 function App() {
 
   const [val,setVal]=useState('');
+  const[output,setOut]=useState('');
 
 
   const handlesubmit =(e)=>{
@@ -30,7 +31,7 @@ function App() {
   fetch('http://localhost:11434/api/generate/',option)
 
   .then(response=>response.text())
-  .then(data=>console.log(data))
+  .then(data=>display(data))
   .catch(error=>console.log("error"));
 
   }
@@ -41,6 +42,11 @@ function App() {
   setVal(e.target.value);
   }
 
+  const display =(event)=>
+  {
+    setOut(event);
+    // <p>{output}</p>
+  }
   return (
     <div className="App">
     <form >
@@ -48,6 +54,7 @@ function App() {
       <br></br>
       <button onClick={handlesubmit} >Send</button>
     </form>
+    <p>{output}</p>
     </div>
   );
 }
